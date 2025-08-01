@@ -64,3 +64,20 @@ document.querySelectorAll('input[type="range"].form-range').forEach(range => {
     range.addEventListener('input', setVars);
     window.addEventListener('resize', setVars);
 });
+
+const buttons = document.querySelectorAll('.filter-btn');
+const projects = document.querySelectorAll('.project-card');
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        projects.forEach(project => {
+            if (filter === 'all' || project.classList.contains(filter)) {
+                project.style.display = 'block';
+            } else {
+                project.style.display = 'none';
+            }
+        });
+    });
+    
+});
