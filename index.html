@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siddharth Tiwari - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=19">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+    </div>
+
     <!-- Animated Dark Background -->
     <div class="animated-bg">
         <div class="gradient-orb orb-1"></div>
@@ -28,11 +36,18 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
             </div>
-            <div class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
+            <div class="nav-actions">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -45,7 +60,10 @@
                     <h1 class="hero-title">
                         Hi, I'm <span class="highlight">Siddharth Tiwari</span>
                     </h1>
-                    <h2 class="hero-subtitle">Full Stack Web Developer,MERN Stack Developer</h2>
+                    <h2 class="hero-subtitle">
+                        <span class="typewriter-text" id="typewriter-text"></span>
+                        <span class="typewriter-cursor">|</span>
+                    </h2>
                 </div>
                 <p class="hero-description">
                     Passionate MERN Stack Developer crafting innovative web solutions with modern technologies.
@@ -56,6 +74,9 @@
                         <i class="fas fa-file-alt"></i>
                         View Resume
                     </a>
+                    <button type="button" class="btn btn-outline-primary" id="admin-toggle-btn" title="Upload Resume">
+                        <i class="fas fa-cog"></i>
+                    </button>
                 </div>
 
             </div>
@@ -65,22 +86,172 @@
         </div>
     </section>
 
+    <!-- Resume Upload Panel -->
+    <div class="resume-upload-panel" id="resume-upload-panel">
+        <div class="resume-upload-panel-inner">
+            <h3><i class="fas fa-upload"></i> Upload Resume</h3>
+            <div class="upload-area" id="upload-area">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Drag & drop your resume PDF here</p>
+                <span>or click to browse</span>
+                <input type="file" id="resume-input" accept=".pdf" hidden>
+            </div>
+            <div class="file-preview" id="file-preview">
+                <i class="fas fa-file-pdf"></i>
+                <span id="file-name"></span>
+                <button type="button" class="remove-file" id="remove-file" title="Remove file">&times;</button>
+            </div>
+            <div class="upload-actions">
+                <button type="button" class="btn btn-primary" id="upload-btn" disabled>
+                    <i class="fas fa-upload"></i> Upload
+                </button>
+                <button type="button" class="btn btn-secondary" id="restore-btn">
+                    <i class="fas fa-undo"></i> Restore Default
+                </button>
+                <button type="button" class="btn btn-outline-primary" id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div class="resume-modal" id="resume-modal">
+        <div class="resume-modal-content">
+            <button type="button" class="resume-modal-close" id="resume-modal-close" title="Close">&times;</button>
+            <iframe id="resume-iframe" src="" title="Resume Preview"></iframe>
+        </div>
+    </div>
+
 
     <!-- About -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
+                <div class="photo-frame">
+                    <img src="image/sidd.jpeg" alt="Siddharth Tiwari" class="profile-img">
+                </div>
                 <div class="about-text">
-                    <p class="about-description">I am a passionate Full Stack Developer specializing in the MERN stack
-                        (MongoDB, Express.js, React.js, Node.js), with hands-on experience in building robust web
-                        applications. Currently, I am a third-year B.Sc. Computer Science student at Thakur College of
-                        Commerce and Science. </p>
-                    <p class="about-description">I enjoy tackling complex coding challenges and collaborating on
-                        projects that drive innovation and deliver real-world solutions. Driven, adaptable, and eager to
-                        learn, I am committed to continuous growth in the field of software development.
+                    <p class="about-description">I am a passionate and dedicated Full Stack Developer specializing in the MERN stack (MongoDB, Express.js, React.js, and Node.js),
+                    with a strong foundation in building modern, scalable, and responsive web applications.
+                    I focus on writing clean, efficient, and maintainable code while delivering seamless user experiences.</p>
+                
+                    <p class="about-description"> I enjoy solving challenging problems, learning new technologies, and transforming ideas into practical solutions.
+                        I am a quick learner, adaptable to new environments, and committed to continuous improvement in software development.
+                        My goal is to contribute to impactful projects and grow as a professional developer.</p>
+                
+                    <div class="quick-facts">
+                        <div class="fact-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>B.Sc. Computer Science</span>
+                        </div>
+                        <div class="fact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mumbai, India</span>
+                        </div>
+                        <div class="fact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>siddhanthtiwari5295@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    </p>
+    <!-- Education & Experience Section -->
+    <section id="experience" class="edu-exp-section">
+        <div class="container">
+            <h2 class="section-title">Education & Experience</h2>
+            
+            <div class="edu-exp-container">
+                <!-- Education Sub-Section -->
+                <div class="edu-exp-column">
+                    <div class="edu-exp-header">
+                        <h3 class="edu-exp-subtitle">
+                            <i class="fas fa-graduation-cap"></i>
+                            Education
+                        </h3>
+                        <button class="btn btn-primary btn-sm" onclick="toggleAddEducationPanel()">
+                            <i class="fas fa-plus"></i> Add Education
+                        </button>
+                    </div>
+
+                    <!-- Add Education Panel -->
+                    <div class="add-entry-panel" id="add-education-panel">
+                        <h4><i class="fas fa-plus-circle"></i> Add New Education</h4>
+                        <div class="form-group">
+                            <label for="edu-degree">Degree / Course</label>
+                            <input type="text" id="edu-degree" placeholder="e.g., B.Sc. Computer Science">
+                        </div>
+                        <div class="form-group">
+                            <label for="edu-institution">Institution</label>
+                            <input type="text" id="edu-institution" placeholder="e.g., University Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="edu-duration">Duration</label>
+                            <input type="text" id="edu-duration" placeholder="e.g., 2023 - Present">
+                        </div>
+                        <div class="form-group">
+                            <label for="edu-description">Description</label>
+                            <textarea id="edu-description" rows="3" placeholder="Brief description of your education..."></textarea>
+                        </div>
+                        <div class="entry-actions">
+                            <button class="btn btn-primary" onclick="saveEducation()">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="toggleAddEducationPanel()">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Education Entries (dynamically rendered by JavaScript) -->
+                    <div class="entries-list" id="education-list">
+                        <!-- Entries will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Experience Sub-Section -->
+                <div class="edu-exp-column">
+                    <div class="edu-exp-header">
+                        <h3 class="edu-exp-subtitle">
+                            <i class="fas fa-briefcase"></i>
+                            Experience
+                        </h3>
+                        <button class="btn btn-primary btn-sm" onclick="toggleAddExperiencePanel()">
+                            <i class="fas fa-plus"></i> Add Experience
+                        </button>
+                    </div>
+
+                    <!-- Add Experience Panel -->
+                    <div class="add-entry-panel" id="add-experience-panel">
+                        <h4><i class="fas fa-plus-circle"></i> Add New Experience</h4>
+                        <div class="form-group">
+                            <label for="exp-title">Job Title / Role</label>
+                            <input type="text" id="exp-title" placeholder="e.g., Full Stack Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="exp-company">Company / Organization</label>
+                            <input type="text" id="exp-company" placeholder="e.g., Company Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exp-duration">Duration</label>
+                            <input type="text" id="exp-duration" placeholder="e.g., 2024 - Present">
+                        </div>
+                        <div class="form-group">
+                            <label for="exp-description">Description</label>
+                            <textarea id="exp-description" rows="3" placeholder="Describe your role and achievements..."></textarea>
+                        </div>
+                        <div class="entry-actions">
+                            <button class="btn btn-primary" onclick="saveExperience()">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                            <button class="btn btn-outline-primary" onclick="toggleAddExperiencePanel()">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Experience Entries (dynamically rendered by JavaScript) -->
+                    <div class="entries-list" id="experience-list">
+                        <!-- Entries will be rendered here -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,119 +264,126 @@
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3 class="category-title">Programming Languages</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">Java</div>
-                        <label for="range-js" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="90" id="range-js" disabled>
-                            <span class="range-bubble" id="bubble-js">90%</span>
+                    <div class="skill-items" id="skill-items-programming">
+                        <div class="skill-row">
+                            <span class="skill-item">Java</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 90%;" data-level="90"></div>
                         </div>
 
-                        <div class="skill-item">JavaScript</div>
-                        <label for="range-py" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="80" id="range-py" disabled>
-                            <span class="range-bubble" id="bubble-py">85%</span>
+                        <div class="skill-row">
+                            <span class="skill-item">JavaScript</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 80%;" data-level="80"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3 class="category-title">Frameworks & Libraries</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">React</div>
-                        <label for="range-react" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="90" id="range-react"
-                                disabled>
-                            <span class="range-bubble" id="bubble-react">90%</span>
+                    <div class="skill-items" id="skill-items-frameworks">
+                        <div class="skill-row">
+                            <span class="skill-item">React</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 90%;" data-level="90"></div>
                         </div>
 
-                        <div class="skill-item">Boostrap</div>
-                        <label for="range-angular" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="70" id="range-angular"
-                                disabled>
-                            <span class="range-bubble" id="bubble-angular">60%</span>
+                        <div class="skill-row">
+                            <span class="skill-item">Bootstrap</span>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 70%;" data-level="70"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3 class="category-title">Backend FrameWorks</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">Node.js</div>
-                        <label for="range-js" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="85" id="range-js" disabled>
-                            <span class="range-bubble" id="bubble-js">90%</span>
+                    <h3 class="category-title">Backend Frameworks</h3>
+                    <div class="skill-items" id="skill-items-backend">
+                        <div class="skill-row">
+                            <span class="skill-item">Node.js</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 85%;" data-level="85"></div>
                         </div>
 
-                        <div class="skill-item">Express.js</div>
-                        <label for="range-py" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="70" id="range-py" disabled>
-                            <span class="range-bubble" id="bubble-py">85%</span>
+                        <div class="skill-row">
+                            <span class="skill-item">Express.js</span>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 70%;" data-level="70"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3 class="category-title">Tools & Tech</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">Github</div>
-                        <label for="range-git" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="92" id="range-git" disabled>
-                            <span class="range-bubble" id="bubble-git">92%</span>
+                    <div class="skill-items" id="skill-items-tools">
+                        <div class="skill-row">
+                            <span class="skill-item">Github</span>
+                            <span class="skill-percent">92%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 92%;" data-level="92"></div>
                         </div>
 
-                        <div class="skill-item">Docker</div>
-                        <label for="range-docker" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="40" id="range-docker"
-                                disabled>
-                            <span class="range-bubble" id="bubble-docker">70%</span>
+                        <div class="skill-row">
+                            <span class="skill-item">Docker</span>
+                            <span class="skill-percent">40%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 40%;" data-level="40"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3 class="category-title">Databases</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">MongoDB</div>
-                        <label for="range-mysql" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="88" id="range-mysql"
-                                disabled>
-                            <span class="range-bubble" id="bubble-mysql">80%</span>
+                    <div class="skill-items" id="skill-items-databases">
+                        <div class="skill-row">
+                            <span class="skill-item">MongoDB</span>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 88%;" data-level="88"></div>
                         </div>
 
-                        <div class="skill-item">MySQL</div>
-                        <label for="range-mongodb" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="63" id="range-mongodb"
-                                disabled>
-                            <span class="range-bubble" id="bubble-mongodb">73%</span>
+                        <div class="skill-row">
+                            <span class="skill-item">MySQL</span>
+                            <span class="skill-percent">63%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 63%;" data-level="63"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3 class="category-title">Overall</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">MERN Stack</div>
-                        <label for="range-js" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="75" id="range-js" disabled>
-                            <span class="range-bubble" id="bubble-js">90%</span>
+                    <div class="skill-items" id="skill-items-overall">
+                        <div class="skill-row">
+                            <span class="skill-item">MERN Stack</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 75%;" data-level="75"></div>
                         </div>
 
-                        <div class="skill-item">Html,Css</div>
-                        <label for="range-py" class="form-label">Skill Level</label>
-                        <div class="skill-slider-wrap">
-                            <input type="range" class="form-range" min="0" max="100" value="95" id="range-py" disabled>
-                            <span class="range-bubble" id="bubble-py">85%</span>
+                        <div class="skill-row">
+                            <span class="skill-item">HTML, CSS</span>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="skill-progress-bar">
+                            <div class="skill-progress" style="width: 95%;" data-level="95"></div>
                         </div>
                     </div>
                 </div>
@@ -218,26 +396,88 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects</h2>
+            
+            <!-- Search Box -->
+            <div class="project-search-container">
+                <input type="text" class="search-box" id="project-search" placeholder="Search projects by title or tags...">
+            </div>
+            
             <div class="project-filter-buttons">
-                <div class="hero-buttons">
-                    <button class="btn btn-outline-primary filter-btn" data-filter="all">All Projects</button>
-                    <button class="btn btn-outline-primary filter-btn" data-filter="fullstack">Full Stack</button>
-                    <button class="btn btn-outline-primary filter-btn" data-filter="frontend">Frontend</button>
-                    <button class="btn btn-outline-primary filter-btn" data-filter="backend">Backend</button>
+                <div class="hero-buttons filter-buttons-grid">
+                    <button type="button" class="btn btn-outline-primary filter-btn" data-filter="all">All Projects</button>
+                    <button type="button" class="btn btn-outline-primary filter-btn" data-filter="fullstack">Full Stack</button>
+                    <button type="button" class="btn btn-outline-primary filter-btn" data-filter="frontend">Frontend</button>
+                    <button type="button" class="btn btn-outline-primary filter-btn" data-filter="backend">Backend</button>
+                </div>
+                
+                <!-- Add Project Button -->
+                <div class="add-project-btn-container">
+                    <button type="button" class="btn btn-primary" id="add-project-btn" onclick="toggleAddProjectPanel()">
+                        <i class="fas fa-plus"></i> Add Project
+                    </button>
+                </div>
+
+                <!-- Add Project Panel -->
+                <div class="add-project-panel" id="add-project-panel">
+                    <h3><i class="fas fa-folder-plus"></i> Add New Project</h3>
+                    <div class="form-group">
+                        <label for="project-title-input">Project Title</label>
+                        <input type="text" id="project-title-input" placeholder="Enter project title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-description-input">Description</label>
+                        <textarea id="project-description-input" rows="3" placeholder="Enter project description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-category-input">Category</label>
+                        <select id="project-category-input">
+                            <option value="fullstack">Full Stack</option>
+                            <option value="frontend">Frontend</option>
+                            <option value="backend">Backend</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-tags-input">Tags (comma separated)</label>
+                        <input type="text" id="project-tags-input" placeholder="React, Node.js, MongoDB">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-image-input">Project Image</label>
+                        <input type="file" id="project-image-input" accept="image/*" style="display:none;" onchange="handleProjectImageUpload(this)">
+                        <div class="project-image-upload" id="project-image-upload" onclick="document.getElementById('project-image-input').click()">
+                            <i class="fas fa-image"></i>
+                            <span>Click to upload image</span>
+                        </div>
+                        <div class="project-image-preview" id="project-image-preview"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-demo-input">Live Demo URL (optional)</label>
+                        <input type="url" id="project-demo-input" placeholder="https://your-demo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-github-input">GitHub URL (optional)</label>
+                        <input type="url" id="project-github-input" placeholder="https://github.com/username/repo">
+                    </div>
+                    <div class="add-project-actions">
+                        <button type="button" class="btn btn-primary" id="save-project-btn" onclick="saveProject()">
+                            <i class="fas fa-save"></i> Save Project
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" onclick="toggleAddProjectPanel()">Cancel</button>
+                    </div>
+                    <div class="project-status" id="project-status"></div>
                 </div>
 
 
-                <div class="projects-grid">
+                <div class="projects-grid" id="projects-grid">
                     <!-- Project Card 1 -->
-                    <div class="project-card fullstack">
+                    <div class="project-card fullstack" data-title="wanderlust" data-tags="express node mongodb bootstrap">
                         <div class="project-image">
-                            <img src="image/Wanderlust.png" alt="Project 1">
+                            <img src="image/Wanderlust.png" alt="Wanderlust Project">
                             <div class="project-overlay">
                                 <div class="project-links">
                                     <a href="https://full-stack-project-xygh.onrender.com/listings" class="project-link"
-                                        target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                                        target="_blank" rel="noopener noreferrer" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
                                     <a href="https://github.com/SiddhanthTiwari/full" class="project-link"
-                                        target="_blank" title="Source Code"><i class="fab fa-github"></i></a>
+                                        target="_blank" rel="noopener noreferrer" title="Source Code"><i class="fab fa-github"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -252,20 +492,20 @@
                                 <span class="tag">Express.js</span>
                                 <span class="tag">Node.js</span>
                                 <span class="tag">MongoDB</span>
-                                <span class="tag">Boostrap</span>
+                                <span class="tag">Bootstrap</span>
                             </div>
                         </div>
                     </div>
                     <!-- Project Card 2 -->
-                    <div class="project-card  fullstack">
+                    <div class="project-card fullstack" data-title="zerodha" data-tags="react mongodb node express">
                         <div class="project-image">
-                            <img src="image/Zerodha.png" alt="Project 2">
+                            <img src="image/Zerodha.png" alt="Zerodha Project">
                             <div class="project-overlay">
                                 <div class="project-links">
                                     <a href="https://zerodha-project-325v.onrender.com/" class="project-link"
-                                        target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                                        target="_blank" rel="noopener noreferrer" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
                                     <a href="https://github.com/SiddhanthTiwari/zerodha-project" class="project-link"
-                                        target="_blank"><i class="fab fa-github"></i></a>
+                                        target="_blank" rel="noopener noreferrer" title="Source Code"><i class="fab fa-github"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -286,13 +526,13 @@
                     </div>
 
                     <!-- Project Card 3 -->
-                    <div class="project-card frontend">
+                    <div class="project-card frontend" data-title="weather app" data-tags="react">
                         <div class="project-image">
-                            <img src="image/Weather.png" alt="Project 4">
+                            <img src="image/Weather.png" alt="Weather App Project">
                             <div class="project-overlay">
                                 <div class="project-links">
                                     <a href="https://github.com/SiddhanthTiwari/React_Weather_app" class="project-link"
-                                        target="_blank"><i class="fab fa-github"></i></a>
+                                        target="_blank" rel="noopener noreferrer" title="Source Code"><i class="fab fa-github"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -312,13 +552,17 @@
                 
                 <div class="github-cta">
                     <a href="https://github.com/SiddhanthTiwari?tab=repositories" class="btn btn-primary"
-                        target="_blank">
+                        target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-github"></i>
                         View More on GitHub
                     </a>
                 </div>
             </div>
+        </div>
     </section>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toast-container"></div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -328,19 +572,22 @@
                     <h3>Siddharth Tiwari</h3>
                     <p>Passionate developer creating amazing digital experiences.</p>
                     <div class="footer-social">
-                        <a href="https://github.com/SiddhanthTiwari" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/siddharth-tiwari-1172bb307/" target="_blank"><i
+                        <a href="https://github.com/SiddhanthTiwari" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/siddharth-tiwari-1172bb307/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i
                                 class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Siddharth Tiwari. All rights reserved.</p>
+                <p>&copy; <span id="footer-year">2025</span> Siddharth Tiwari. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    <button class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></button>
-    <script src="script.js"></script>
+    <button class="back-to-top" id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js?v=13"></script>
 </body>
 
 </html>
